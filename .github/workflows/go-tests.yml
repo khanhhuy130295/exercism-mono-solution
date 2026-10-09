@@ -28,10 +28,11 @@ jobs:
               with:
                   go-version: ${{ matrix.go-version }}
 
-            - name: Run tests
-              working-directory: ./go
-              run: go test -v ./...
-
-            - name: Run tests with coverage
-              working-directory: ./go
-              run: go test -cover ./...
+            - name: Find and run tests in all exercise directories
+              run: |
+                  for dir in go/*/; do
+                    if [ -f "$dir/go.mod" ]; then
+                      echo "Testing $dir"
+                      (cd "$dir" && go test -v)
+                    fi
+                  done
