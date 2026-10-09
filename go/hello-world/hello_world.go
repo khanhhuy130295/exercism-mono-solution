@@ -1,7 +1,7 @@
 package greeting
 
-// HelloWorld greets the world.
+// HelloWorld greets the world 11.
 func HelloWorld() string {
-	return "Hello, World!"
+	var sayHello string = "Hello, World!"
+	return sayHello
 }
-
