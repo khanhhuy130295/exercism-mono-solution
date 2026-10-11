@@ -1,23 +1,30 @@
 package raindrops
 
-import "fmt"
+import (
+	"strconv"
+	"strings"
+)
+
+var factors = []struct {
+	value int
+	sound string
+}{
+	{3, "Pling"},
+	{5, "Plang"},
+	{7, "Plong"},
+}
 
 func Convert(number int) string {
-    var result string = ""
-    
-	if (number % 3 == 0){
-        result = "Pling"
-    }
-    
-    if (number % 5 == 0){
-        result += "Plang"
-    }
-    
-    if (number % 7 == 0){
-       result += "Plong"
-    }
-    if (len(result) == 0){
-        result =  fmt.Sprintf("%d",number)
-    }
-	return result
+	var result strings.Builder
+	for _, factor := range factors {
+		if number%factor.value == 0 {
+			result.WriteString(factor.sound)
+		}
+	}
+
+	if result.Len() == 0 {
+		return strconv.Itoa(number)
+	}
+
+	return result.String()
 }
