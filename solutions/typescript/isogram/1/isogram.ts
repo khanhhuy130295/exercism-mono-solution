@@ -1,0 +1,15 @@
+export function isIsogram(word: string): boolean {
+  const seen  =  new Set<string>();
+
+  for(const char of word.toLowerCase()){
+    if (char === " " || char === "-"){
+      continue;
+    }
+
+    if (seen.has(char)){
+      return false;
+    }
+    seen.add(char);
+  }
+  return true;
+}
